@@ -1,0 +1,5 @@
+如果觉得ZooKeeper太庞大,可以考虑doozer, 一个用go语言开发小巧的分布式强一致性小容量存储系统,当数据发生变化时,它实时通知所有客户端。  但不知道是否可以完全代替？有待验证！
+https://github.com/ha/doozerd
+或者
+https://github.com/etcd-io/etcd   
+https://github.com/coreos/go-etcd
