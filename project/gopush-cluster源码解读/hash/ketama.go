@@ -3,7 +3,8 @@
 package hash
 
 import (
-	//	"crypto/md5"
+	//	
+	"crypto/md5"
 	"fmt"
 	"sort"
 )
