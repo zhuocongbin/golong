@@ -13,7 +13,9 @@ import (
 )
 
 var (
+	//通道不存在错误
 	ErrChannelNotExist = errors.New("Channle not exist")
+	//未知连接协议错误
 	ErrConnProto       = errors.New("Unknown connection protocol")
 	ErrChannelKey      = errors.New("Key not belong this comet")
 	UserChannel        *ChannelList
