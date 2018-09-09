@@ -21,7 +21,7 @@ var (
 	nodeWeightMap      = map[string]int{}
 )
 
-// The subscriber interface.
+// The subscriber interface.//订阅者接口
 type Channel interface {
 	// WriteMsg push a message to the subscriber.
 	WriteMsg(key string, m *myrpc.Message) error
