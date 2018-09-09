@@ -1,0 +1,25 @@
+
+Git要求每台电脑都要有自己的用户名(User Name)和邮箱(Email)
+
+git config --global user.name "your name"
+git config --global user.email "your email"
+
+在自己电脑里找到自己所要上传的文件夹，右键Git Bash here
+
+git init
+其文件夹下会建立一个.git文件夹
+
+git remote add origin git@github.com:你的账户/你的仓库名称.git
+
+推荐先把两边同步下
+
+git pull --rebase origin master
+git pull origin master
+
+//添加所有文件夹
+git add .
+//备注信息
+git commit -m 'first_commit'
+//同步到远程
+git push origin master
+//输入用户名和密码
