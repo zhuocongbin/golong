@@ -53,6 +53,7 @@ func (c *Connection) HandleWrite(key string) {
 }
 
 // Write different message to client by different protocol
+// 通过不同的协议向客户端发送不同的消息
 func (c *Connection) Write(key string, msg []byte) {
 	select {
 	case c.Buf <- msg:
