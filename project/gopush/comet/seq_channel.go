@@ -29,7 +29,7 @@ type SeqChannel struct {
 	token *Token
 }
 
-// New a user seq stored message channel.
+// New a user seq stored message channel. //用户seq存储的消息通道。
 func NewSeqChannel() *SeqChannel {
 	ch := &SeqChannel{
 		mutex: &sync.Mutex{},
@@ -44,7 +44,7 @@ func NewSeqChannel() *SeqChannel {
 	return ch
 }
 
-// AddToken implements the Channel AddToken method.
+// AddToken implements the Channel AddToken method. //实现通道AddToken方法。
 func (c *SeqChannel) AddToken(key, token string) error {
 	if !Conf.Auth {
 		return nil
@@ -59,7 +59,7 @@ func (c *SeqChannel) AddToken(key, token string) error {
 	return nil
 }
 
-// AuthToken implements the Channel AuthToken method.
+// AuthToken implements the Channel AuthToken method. // 实现Channel AuthToken方法。
 func (c *SeqChannel) AuthToken(key, token string) bool {
 	if !Conf.Auth {
 		return true
@@ -74,7 +74,7 @@ func (c *SeqChannel) AuthToken(key, token string) bool {
 	return true
 }
 
-// WriteMsg implements the Channel WriteMsg method.
+// WriteMsg implements the Channel WriteMsg method. //实现频道WriteMsg方法。
 func (c *SeqChannel) WriteMsg(key string, m *myrpc.Message) (err error) {
 	c.mutex.Lock()
 	err = c.writeMsg(key, m)
@@ -91,6 +91,7 @@ func (c *SeqChannel) writeMsg(key string, m *myrpc.Message) (err error) {
 	for e := c.conn.Front(); e != nil; e = e.Next() {
 		conn, _ := e.Value.(*Connection)
 		// if version empty then use old protocol
+		// 如果版本为空，则使用旧协议
 		if conn.Version == "" {
 			if oldMsg == nil {
 				if oldMsg, err = m.OldBytes(); err != nil {
@@ -112,16 +113,16 @@ func (c *SeqChannel) writeMsg(key string, m *myrpc.Message) (err error) {
 	return
 }
 
-// PushMsg implements the Channel PushMsg method.
+// PushMsg implements the Channel PushMsg method. // 实现Channel PushMsg方法。
 func (c *SeqChannel) PushMsg(key string, m *myrpc.Message, expire uint) (err error) {
 	client := myrpc.MessageRPC.Get()
 	if client == nil {
 		return ErrMessageRPC
 	}
 	c.mutex.Lock()
-	// private message need persistence
-	// if message expired no need persistence, only send online message
-	// rewrite message id
+	// private message need persistence // 私有消息需要持久性
+	// if message expired no need persistence, only send online message rewrite message id
+	// 如果消息过期不需要持久性，只发送在线消息重写消息id
 	//m.MsgId = c.timeID.ID()
 	m.MsgId = id.Get()
 	if m.GroupId != myrpc.PublicGroupId && expire > 0 {
@@ -143,7 +144,7 @@ func (c *SeqChannel) PushMsg(key string, m *myrpc.Message, expire uint) (err err
 	return
 }
 
-// AddConn implements the Channel AddConn method.
+// AddConn implements the Channel AddConn method. // 实现通道AddConn方法。
 func (c *SeqChannel) AddConn(key string, conn *Connection) (*hlist.Element, error) {
 	c.mutex.Lock()
 	if c.conn.Len()+1 > Conf.MaxSubscriberPerChannel {
@@ -152,6 +153,7 @@ func (c *SeqChannel) AddConn(key string, conn *Connection) (*hlist.Element, erro
 		return nil, ErrMaxConn
 	}
 	// send first heartbeat to tell client service is ready for accept heartbeat
+	// 发送第一个心跳告诉客户端服务准备接受心跳
 	if _, err := conn.Conn.Write(HeartbeatReply); err != nil {
 		c.mutex.Unlock()
 		log.Error("user_key:\"%s\" write first heartbeat to client error(%v)", key, err)
@@ -168,6 +170,7 @@ func (c *SeqChannel) AddConn(key string, conn *Connection) (*hlist.Element, erro
 }
 
 // RemoveConn implements the Channel RemoveConn method.
+// 实现通道RemoveConn方法。
 func (c *SeqChannel) RemoveConn(key string, e *hlist.Element) error {
 	c.mutex.Lock()
 	tmp := c.conn.Remove(e)
@@ -182,7 +185,7 @@ func (c *SeqChannel) RemoveConn(key string, e *hlist.Element) error {
 	return nil
 }
 
-// Close implements the Channel Close method.
+// Close implements the Channel Close method. //实现通道关闭方法。
 func (c *SeqChannel) Close() error {
 	c.mutex.Lock()
 	for e := c.conn.Front(); e != nil; e = e.Next() {
@@ -191,7 +194,7 @@ func (c *SeqChannel) Close() error {
 			return ErrAssectionConn
 		} else {
 			if err := conn.Conn.Close(); err != nil {
-				// ignore close error
+				// ignore close error //忽略关闭错误
 				log.Warn("conn.Close() error(%v)", err)
 			}
 		}
