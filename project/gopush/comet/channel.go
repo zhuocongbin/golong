@@ -25,22 +25,25 @@ var (
 
 // The subscriber interface.//订阅者接口
 type Channel interface {
-	// WriteMsg push a message to the subscriber.
+	// WriteMsg push a message to the subscriber.//向订阅服务器推送消息。
 	WriteMsg(key string, m *myrpc.Message) error
 	// PushMsg push a message to the subscriber.
 	PushMsg(key string, m *myrpc.Message, expire uint) error
-	// Add a token for one subscriber
+	// Add a token for one subscriber //为一个订阅服务器添加token
 	// The request token not equal the subscriber token will return errors.
+	// 请求令牌符不等于订阅者令牌符将返回错误。
 	AddToken(key, token string) error
 	// Auth auth the access token.
 	// The request token not match the subscriber token will return errors.
+	// 请求令牌与订阅方令牌不匹配将返回错误。
 	AuthToken(key, token string) bool
 	// AddConn add a connection for the subscriber.
 	// Exceed the max number of subscribers per key will return errors.
+	// 超过每个键的最大订户数将返回错误。
 	AddConn(key string, conn *Connection) (*hlist.Element, error)
 	// RemoveConn remove a connection for the  subscriber.
 	RemoveConn(key string, e *hlist.Element) error
-	// Expire expire the channle and clean data.
+	// Expire expire the channle and clean data. //终止通道和干净数据。
 	Close() error
 }
 
@@ -80,7 +83,7 @@ func NewChannelList() *ChannelList {
 	return l
 }
 
-// Count get the bucket total channel count.
+// Count get the bucket total channel count. //获取桶总通道数。
 func (l *ChannelList) Count() int {
 	c := 0
 	for i := 0; i < Conf.ChannelBucket; i++ {
@@ -113,7 +116,7 @@ func (l *ChannelList) validate(key string) error {
 	return nil
 }
 
-// New create a user channle.
+// New create a user channle. //创建一个用户通道。
 func (l *ChannelList) New(key string) (Channel, *ChannelBucket, error) {
 	// validate
 	if err := l.validate(key); err != nil {
@@ -138,6 +141,7 @@ func (l *ChannelList) New(key string) (Channel, *ChannelBucket, error) {
 }
 
 // Get a user channel from ChannleList.
+// 从通道列表中获得一个用户通道。
 func (l *ChannelList) Get(key string, newOne bool) (Channel, error) {
 	// validate
 	if err := l.validate(key); err != nil {
@@ -168,6 +172,7 @@ func (l *ChannelList) Get(key string, newOne bool) (Channel, error) {
 }
 
 // Delete a user channel from ChannleList.
+// 从通道列表中删除一个用户通道。
 func (l *ChannelList) Delete(key string) (Channel, error) {
 	// get a channel bucket
 	b := l.Bucket(key)
@@ -185,7 +190,7 @@ func (l *ChannelList) Delete(key string) (Channel, error) {
 	}
 }
 
-// Close close all channel.
+// Close close all channel.//关闭所有通道。
 func (l *ChannelList) Close() {
 	log.Info("channel close")
 	chs := make([]Channel, 0, l.Count())
@@ -205,6 +210,7 @@ func (l *ChannelList) Close() {
 }
 
 // Migrate migrate portion of connections which don't belong to this comet.
+// 迁移不属于此comet的连接部分。
 func (l *ChannelList) Migrate(nw map[string]int) (err error) {
 	migrate := false
 	// check new/update node
@@ -253,7 +259,7 @@ func (l *ChannelList) Migrate(nw map[string]int) (err error) {
 		c.Unlock()
 		log.Debug("migrate channel bucket:%d finished", i)
 	}
-	// close all the migrate channels
+	// close all the migrate channels //关闭所有迁移通道
 	log.Info("close all the migrate channels")
 	for _, channel := range channels {
 		if err := channel.Close(); err != nil {
