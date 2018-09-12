@@ -17,9 +17,12 @@ var (
 	ErrChannelNotExist = errors.New("Channle not exist")
 	//未知连接协议错误
 	ErrConnProto       = errors.New("Unknown connection protocol")
+	//错误的key
 	ErrChannelKey      = errors.New("Key not belong this comet")
+	//用户通道
 	UserChannel        *ChannelList
 	CometRing          *ketama.HashRing
+	//节点映射
 	nodeWeightMap      = map[string]int{}
 )
 
