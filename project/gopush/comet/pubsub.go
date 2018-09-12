@@ -20,11 +20,11 @@ const (
 )
 
 var (
-	// Exceed the max subscriber per key
+	// Exceed the max subscriber per key // 超过每个键的最大订阅量
 	ErrMaxConn = errors.New("Exceed the max subscriber connection per key")
-	// Assection type failed
+	// Assection type failed // Assection类型失败
 	ErrAssertType = errors.New("Subscriber assert type failed")
-	// Heartbeat
+	// Heartbeat 心跳
 	// HeartbeatLen = len(Heartbeat)
 	// hearbeat
 	HeartbeatReply = []byte("+h\r\n")
@@ -38,7 +38,7 @@ var (
 	NodeReply = []byte("-n\r\n")
 )
 
-// StartListen start accept client.
+// StartListen start accept client. // 开始接收客户端。
 func StartComet() error {
 	for _, proto := range Conf.Proto {
 		if proto == WebsocketProtoStr {
