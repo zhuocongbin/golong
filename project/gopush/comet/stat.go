@@ -23,7 +23,7 @@ var (
 	ConnStat = &ConnectionStat{}
 )
 
-// Channel stat info
+// Channel stat info //通道统计信息
 type ChannelStat struct {
 	Access uint64 // total access count
 	Create uint64 // total create count
@@ -42,7 +42,7 @@ func (s *ChannelStat) IncrDelete() {
 	atomic.AddUint64(&s.Delete, 1)
 }
 
-// Stat get the channle stat info
+// Stat get the channle stat info //获取通道统计信息
 func (s *ChannelStat) Stat() []byte {
 	res := map[string]interface{}{}
 	res["access"] = s.Access
@@ -52,7 +52,7 @@ func (s *ChannelStat) Stat() []byte {
 	return jsonRes(res)
 }
 
-// Message stat info
+// Message stat info // 消息统计信息
 type MessageStat struct {
 	Succeed uint64 // total push message succeed count
 	Failed  uint64 // total push message failed count
@@ -66,7 +66,7 @@ func (s *MessageStat) IncrFailed(delta uint64) {
 	atomic.AddUint64(&s.Failed, delta)
 }
 
-// Stat get the message stat info
+// Stat get the message stat info //获取消息统计信息
 func (s *MessageStat) Stat() []byte {
 	res := map[string]interface{}{}
 	res["succeed"] = s.Succeed
@@ -75,7 +75,7 @@ func (s *MessageStat) Stat() []byte {
 	return jsonRes(res)
 }
 
-// Connection stat info
+// Connection stat info // 连接统计信息
 type ConnectionStat struct {
 	Add    uint64 // total add connection count
 	Remove uint64 // total remove connection count
@@ -89,7 +89,7 @@ func (s *ConnectionStat) IncrRemove() {
 	atomic.AddUint64(&s.Remove, 1)
 }
 
-// Stat get the connection stat info
+// Stat get the connection stat info // 获取连接统计信息
 func (s *ConnectionStat) Stat() []byte {
 	res := map[string]interface{}{}
 	res["add"] = s.Add
@@ -116,7 +116,7 @@ func StartStats() {
 	}
 }
 
-// memory stats
+// memory stats //内存统计
 func MemStats() []byte {
 	m := &runtime.MemStats{}
 	runtime.ReadMemStats(m)
@@ -155,7 +155,7 @@ func MemStats() []byte {
 	return jsonRes(res)
 }
 
-// golang stats
+// golang stats  // golang统计
 func GoStats() []byte {
 	res := map[string]interface{}{}
 	res["compiler"] = runtime.Compiler
@@ -169,7 +169,7 @@ func GoStats() []byte {
 	return jsonRes(res)
 }
 
-// server stats
+// server stats  //服务器统计
 func ServerStats() []byte {
 	res := map[string]interface{}{}
 	res["uptime"] = time.Now().UnixNano() - startTime
@@ -191,7 +191,7 @@ func ServerStats() []byte {
 	return jsonRes(res)
 }
 
-// configuration info
+// configuration info  // 配置文件信息
 func ConfigInfo() []byte {
 	byteJson, err := json.MarshalIndent(Conf, "", "    ")
 	if err != nil {
@@ -201,7 +201,7 @@ func ConfigInfo() []byte {
 	return byteJson
 }
 
-// jsonRes format the output
+// jsonRes format the output  // 格式化输出
 func jsonRes(res map[string]interface{}) []byte {
 	byteJson, err := json.MarshalIndent(res, "", "    ")
 	if err != nil {
@@ -225,7 +225,7 @@ func ChInfoStat(key string) []byte {
 	return jsonRes(res)
 }
 
-// StatHandle get stat info by http
+// StatHandle get stat info by http  //通过http得到统计信息
 func StatHandle(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, "Method Not Allowed", 405)
