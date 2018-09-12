@@ -54,7 +54,7 @@ type Config struct {
 	MsgBufNum               int           `goconf:"channel:msgbuf.num"`
 }
 
-// InitConfig get a new Config struct.
+// InitConfig get a new Config struct.//初始化获得一个新的配置结构。
 func InitConfig() error {
 	Conf = &Config{
 		// base
