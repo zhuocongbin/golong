@@ -8,6 +8,13 @@ import(
 
 )
 
-func func main() {
+func RegisterHandlers() *httprouter.Router {
+	router := httprouter.New()
+	router.POST("/user",CreateUser)
+	return router
 	
+}
+func func main() {
+	r := RegisterHandlers()
+	http.ListenAndServe(":8000",r)
 }
