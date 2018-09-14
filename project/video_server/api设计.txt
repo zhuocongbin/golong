@@ -1,0 +1,19 @@
+﻿用户：
+
+创建（注册）用户：URL:/user  Method:POST SC:201,400,500
+用户登录： URL:/user/:username Method:POST SC:200,400,500
+获取用户基本信息： URL:/user/:username Method:GET SC:200,400,401,403,500
+用户注销：URL:/user/:username Method:DELETE SC:204,400,401,403,500
+
+
+用户资源：
+
+List all videos: URL:/user/:username/videos Method:GET SC:200,400,500
+Get one video: URL:/user/:username/videos/:vid-id Method:GET SC:200,400,500
+Delete one video: URL:/user/:username/videos/:vid-id Method:DELETE SC:204,400,401,403,500
+
+
+评论：
+Show comments： URL:/videos/:vide-id/comments Method:GET SC:200,400,500
+Post a comment： URL:/videos/:vide-id/comments Method:POST SC:201,400,500
+Delete a comment： URL:/videos/:vide-id/comments/:comments-id Method:DELETE SC:204,400,401,403,500
