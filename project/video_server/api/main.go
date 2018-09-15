@@ -10,7 +10,11 @@ import(
 
 func RegisterHandlers() *httprouter.Router {
 	router := httprouter.New()
+	//创建用户
 	router.POST("/user",CreateUser)
+	//用户登录
+	router.POST("/user/:user_name", Login)
+	
 	return router
 	
 }
