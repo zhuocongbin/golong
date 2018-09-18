@@ -1,0 +1,49 @@
+﻿支付模块：可以以gopay作参考
+https://github.com/milkbobo/gopay
+
+
+LBS模块：百度和高德
+https://github.com/cnlisea/amaplbs
+
+GEO模块：经纬度和IP
+https://github.com/kellydunn/golang-geo
+https://github.com/abh/geoip
+
+表单验证模块：
+https://github.com/noaway/validator
+
+身份证验证模块：
+https://github.com/sleagon/chinaid
+
+MYSQL模块：
+https://github.com/go-sql-driver/mysql
+
+
+文件储存服务
+https://github.com/linxGnu/goseaweedfs
+
+全文搜索服务 （两个好像一样的）
+https://github.com/huichen/wukong
+https://github.com/go-ego/riot
+
+
+手机短信验证码服务 （可以先对比一下）
+https://github.com/xluohome/smscode
+https://github.com/KenmyZhang/aliyun-communicate
+
+图片验证码服务 （对比一下）
+https://github.com/jianxinio/captcha
+https://github.com/godblesshugh/Services_Captcha
+https://github.com/pwcong/simver
+
+单点登录服务
+https://github.com/KenmyZhang/single-sign-on
+
+邮箱验证服务
+https://github.com/go-mailer/validate
+
+图片点选验证码
+https://github.com/zhaosheng-yu/verifyimg
+
+http auth验证
+https://github.com/abbot/go-http-auth
