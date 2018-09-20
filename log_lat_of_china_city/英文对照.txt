@@ -11,3 +11,4 @@ community    社区（相当于村）
 building     栋/楼/幢
 unit   单元
 floor  楼层
+house number  门牌号
