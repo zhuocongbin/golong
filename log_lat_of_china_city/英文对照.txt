@@ -1,0 +1,13 @@
+﻿latitude   lat 纬度
+longitude  lng 经度
+
+address  地址
+province 省
+city     市
+region   区
+subdistrict  街道（相当于镇）
+street       街道（相当于路）
+community    社区（相当于村）
+building     栋/楼/幢
+unit   单元
+floor  楼层
