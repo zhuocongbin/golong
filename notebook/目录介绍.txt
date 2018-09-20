@@ -1,3 +1,4 @@
-base�����涼��GO����ʵ��
-project�� һЩ��ĿԴ���ռ�
-kit�� ���ù��߰�  �� orm���
+﻿base：里面都是GO基础实例
+project： 一些项目源码收集
+kit： 常用工具包  如 orm框架
+apis： 常用业务api 如 登录 注册API
