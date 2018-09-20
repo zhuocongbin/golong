@@ -1,0 +1,87 @@
+﻿用户：
+
+创建（注册）用户：URL:/user  Method:POST SC:201,400,500
+用户登录： URL:/user/:username Method:POST SC:200,400,500
+获取用户基本信息： URL:/user/:username Method:GET SC:200,400,401,403,500
+用户注销：URL:/user/:username Method:DELETE SC:204,400,401,403,500
+
+
+用户资源：
+
+List all videos: URL:/user/:username/videos Method:GET SC:200,400,500
+Get one video: URL:/user/:username/videos/:vid-id Method:GET SC:200,400,500
+Delete one video: URL:/user/:username/videos/:vid-id Method:DELETE SC:204,400,401,403,500
+
+
+评论：
+Show comments： URL:/videos/:vide-id/comments Method:GET SC:200,400,500
+Post a comment： URL:/videos/:vide-id/comments Method:POST SC:201,400,500
+Delete a comment： URL:/videos/:vide-id/comments/:comments-id Method:DELETE SC:204,400,401,403,500
+
+
+
+
+
+目录：
+
+1、获取城市列表     /v1/cities
+2、获取所选城市信息  /v1/cities/:id
+3、搜索地址          /v1/pois
+4、根据经纬度详细定位  /v2/pois/:geohash
+5、食品分类列表     /v2/index_entry
+6、获取商铺列表   /shopping/restaurants
+7、搜索餐馆       /v4/restaurants
+8、获取所有商铺分类列表    /shopping/v2/restaurant/category
+9、获取配送方式      /shopping/v1/restaurants/delivery_modes
+10、商家属性活动列表   /shopping/v1/restaurants/activity_attributes
+11、餐馆详情      /shopping/restaurant/:shopid
+12、上传图片      /v1/addimg/:type
+13、添加餐馆      /shopping/addshop
+14、添加食品种类  /shopping/addcategory
+15、添加食品      /shopping/addfood
+16、获取食品列表  /shopping/v2/menu
+17、获取评价信息  /ugc/v2/restaurants/:restaurant_id/ratings
+18、获取评价分数  /ugc/v2/restaurants/:restaurant_id/ratings/scores
+19、获取评价分类  /ugc/v2/restaurants/:restaurant_id/ratings/tags
+20、加入购物车    /v1/carts/checkout
+21、获取备注信息   /v1/carts/:cart_id/remarks
+22、获取收货地址列表   /v1/users/:user_id/addresses
+23、获取验证码         /v1/captchas
+24、获取用户信息       /v1/user
+25、登录               /v2/login
+26、退出               /v2/signout
+27、修改密码           /v2/changepassword
+28、增加收货地址       /v1/users/:user_id/addresses
+29、删除收货地址       /v1/users/:user_id/addresses/:address_id
+30、下单               /v1/users/:user_id/carts/:cart_id/orders
+31、订单列表           /bos/v2/users/:user_id/orders
+32、订单详情           /bos/v1/users/:user_id/orders/:order_id/snapshot
+33、服务中心           /v3/profile/explain
+34、可用红包           /promotion/v2/users/:user_id/hongbaos
+35、过期红包           /promotion/v2/users/:user_id/expired_hongbaos
+36、兑换红包           /v1/users/:user_id/hongbao/exchange
+37、管理员登录         /admin/login
+38、管理员退出登录     /admin/singout
+39、管理员信息         /admin/info
+40、获取某日API请求量   /statis/api/:date/count
+41、获取所有API请求量   /statis/api/count
+42、获取某天用户注册量   /statis/user/:date/count
+43、获取所有用户注册量   /v1/users/count
+44、获取某天订单数量     /statis/order/:date/count
+45、获取所有订单数量     /bos/orders/count
+46、管理员列表           /admin/all
+47、获取管理员数量       /admin/count
+48、获取店铺食品种类     /shopping/getcategory/:restaurant_id
+49、获取餐馆数量         /shopping/restaurants/count
+50、更新餐馆             /shopping/updateshop
+51、删除餐馆             /shopping/restaurant/:restaurant_id
+52、获取食品列表         /shopping/v2/foods
+53、获取食品数量         /shopping/v2/foods/count
+54、获取食品种类详情     /shopping/v2/menu/:category_id
+55、更新食品             /shopping/v2/updatefood
+56、删除食品             /shopping/v2/food/:food_id
+57、获取用户列表         /v1/users/list
+58、获取订单列表         /bos/orders
+59、获取地址信息          /v1/addresse/:address_id
+60、获取用户分布信息      /v1/user/city/count
+61、获取某天管理员注册量   /statis/admin/:date/count
