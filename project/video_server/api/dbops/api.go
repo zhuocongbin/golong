@@ -79,7 +79,8 @@ func AddNewVideo(aid int, name string) (*defs.VideoInfo, error) {
 		return nil, err
 	}
 	t:=time.Now()
-	ctime:=t.Format("Jan 02 2006, 15:04:05")
+	ctime:=t.Format("Jan 02 2006, 15:04:05")   //这个时间"Jan 02 2006, 15:04:05" 是固定的，改成其他任何数字时间 都会出现异常，切记！
+	//sql语句本来是双引号，但是换行后必须改成反单引号。
 	stmtIns, err:=dbConn.Prepare(`INSERT INTO video_info
 		(id, author_id, name, display_ctime) VALUES(?,?,?,?)`)
 	if err!=nil {
