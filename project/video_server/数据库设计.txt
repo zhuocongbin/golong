@@ -1,0 +1,32 @@
+﻿用户表：
+
+TABLE：users
+id UNSIGNED INT,PRIMARY KEY,AUTO_INCREMENT
+login_name VARCHAR(64),UNIQUE KEY
+pwd TEXT
+
+
+视频资源表：
+
+TABLE:video_info
+id VARCHAR(64),PRIMARY KEY,NOT NULL
+author_id UNSIGNED INT
+name TEXT
+display_ctime TEXT
+create_time DATATIME
+
+评论表：
+
+TABLE:comments
+id VARCHAR(64),PRIMARY KEY,NOT NULL
+video_id VARCHAR(64)
+author_id UNSIGNED INT
+content TEXT
+time DATETIME
+
+sesions表：
+
+TABLE:sessions
+session_id TINYTEXT,PRIMARY KEY,NOT NULL 
+TTL TINYTEXT     //过期时间
+login_name VARCHAR(64)
