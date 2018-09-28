@@ -12,9 +12,10 @@ var (
 	tempvid string
 	tempsid string
 )
-
+// test用例编写步骤 ：第一步初始化，第二步运行tests ， 第三步清除数据
 // init(dblogin, truncate tables)-> run tests -> clear data(truncate tables)
 
+//清除表数据
 func clearTables() {
 	dbConn.Exec("truncate users")
 	dbConn.Exec("truncate video_info")
@@ -28,6 +29,7 @@ func TestMain(m *testing.M) {
 	clearTables()
 }
 
+//测试的工作流（顺序） 先添加，然后查看，接着删除，最后再次查看
 func TestUserWorkFlow(t *testing.T) {
 	t.Run("Add", testAddUser)
 	t.Run("Get", testGetUser)
@@ -66,6 +68,7 @@ func testRegetUser(t *testing.T) {
 	}
 }
 
+//测试工作流
 func TestVideoWorkFlow(t *testing.T) {
 	clearTables()
 	t.Run("PrepareUser", testAddUser)
