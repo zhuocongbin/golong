@@ -10,10 +10,12 @@ import (
 )
 
 func AddUserCredential(loginName string, pwd string) error {
+	//Prepare 预编译  stmtIns 写入流 stmtOut 读取流
 	stmtIns, err := dbConn.Prepare("INSERT INTO users(login_name, pwd) values(?,?)")
 	if err != nil {
 		return err
 	}
+	//将 (loginName, pwd)替代(?,?)，并执行
 	_, err = stmtIns.Exec(loginName, pwd)
 	if err != nil {
 		return err
